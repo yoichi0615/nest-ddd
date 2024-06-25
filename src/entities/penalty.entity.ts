@@ -1,13 +1,13 @@
-// src/entity/penalty.entity.ts
 import {
   Entity,
   PrimaryGeneratedColumn,
   Column,
   ManyToOne,
-  JoinColumn,
   CreateDateColumn,
   UpdateDateColumn,
   DeleteDateColumn,
+  OneToOne,
+  JoinColumn,
 } from 'typeorm';
 import { GoalEntity } from './goal.entity';
 import { User } from './user.entity';
@@ -17,18 +17,15 @@ export class Penalty {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @ManyToOne(() => GoalEntity, { nullable: false })
-  @JoinColumn({ name: 'goal_id' })
-  goal: GoalEntity;
-
-  @ManyToOne(() => User, { nullable: false })
+  @ManyToOne(() => User, (user) => user.penalties)
   @JoinColumn({ name: 'user_id' })
   user: User;
 
-  @Column('decimal', { precision: 10, scale: 2 })
-  amount: number;
+  @OneToOne(() => GoalEntity, (goal) => goal.penalty)
+  @JoinColumn({ name: 'goal_id' })
+  goal: GoalEntity;
 
-  @Column('date', { name: 'date' })
+  @Column('date')
   date: Date;
 
   @CreateDateColumn({ name: 'created_at' })

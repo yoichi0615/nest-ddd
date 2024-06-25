@@ -3,7 +3,6 @@ import { IGOAL_REPOSITORY_TOKEN } from 'src/constants';
 import { GoalName } from 'src/domain/goal/goal-name.value-object';
 import { Goal } from 'src/domain/goal/goal.aggregate-root';
 import { IGoalRepository } from 'src/domain/repositories/goal.repository';
-import { User } from 'src/entities/user.entity';
 import { CreateGoalRequestDto } from 'src/presentation/dtos/create-goal-request.dto';
 
 @Injectable()
@@ -25,7 +24,7 @@ export class GoalService {
       createGoalRequestDto.startDate,
       createGoalRequestDto.frequency,
     );
-    console.log(goal, 'GOALLL')
+
     return await this.goalRepository.create(goal);
   }
 }

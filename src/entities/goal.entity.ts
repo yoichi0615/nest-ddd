@@ -7,8 +7,11 @@ import {
   CreateDateColumn,
   UpdateDateColumn,
   DeleteDateColumn,
+  OneToOne,
+  JoinColumn,
 } from 'typeorm';
 import { User } from './user.entity';
+import { Penalty } from './penalty.entity';
 
 @Entity('goals')
 export class GoalEntity {
@@ -16,10 +19,11 @@ export class GoalEntity {
   id: number;
 
   @ManyToOne(() => User, (user) => user.id)
+  @JoinColumn({ name: 'user_id' })
   user: User;
 
-  @Column()
-  userId: number;
+  @OneToOne(() => Penalty, (penalty) => penalty.id)
+  penalty: Penalty;
 
   @Column()
   name: string;

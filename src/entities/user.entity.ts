@@ -6,7 +6,10 @@ import {
   CreateDateColumn,
   UpdateDateColumn,
   DeleteDateColumn,
+  OneToMany,
 } from 'typeorm';
+import { Penalty } from './penalty.entity';
+import { GoalEntity } from './goal.entity';
 
 @Entity('users')
 export class User {
@@ -22,7 +25,13 @@ export class User {
   @Column()
   password: string;
 
-  @Column({ nullable: true })
+  @OneToMany(() => Penalty, (penalty) => penalty.user)
+  penalties: Penalty[];
+
+  @OneToMany(() => GoalEntity, (goal) => goal.user)
+  goals: GoalEntity[];
+
+  @Column({ name: 'stripe_customer_id', nullable: true })
   stripeCustomerId: string;
 
   @CreateDateColumn({ name: 'created_at', type: 'timestamp' })

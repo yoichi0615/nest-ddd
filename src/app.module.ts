@@ -6,6 +6,8 @@ import { ConfigModule } from '@nestjs/config';
 import { GoalModule } from './modules/goal/goal.module';
 import { User } from './entities/user.entity';
 import { GoalEntity } from './entities/goal.entity';
+import { Penalty } from './entities/penalty.entity';
+import { Payment } from './entities/payment.entity';
 
 @Module({
   imports: [
@@ -19,7 +21,7 @@ import { GoalEntity } from './entities/goal.entity';
       username: process.env.DATABASE_USER,
       password: process.env.DATABASE_PASSWORD,
       database: process.env.DATABASE_NAME,
-      entities: [User, GoalEntity],
+      entities: [User, GoalEntity, Penalty, Payment],
       synchronize: true,
     }),
     UserModule,
