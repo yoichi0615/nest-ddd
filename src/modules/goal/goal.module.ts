@@ -5,12 +5,14 @@ import { GoalService } from 'src/application/use-case/create-goal.usecase';
 import { GoalRepository } from 'src/infrastructure/repositories/goal.repository.impl';
 import { IGOAL_REPOSITORY_TOKEN } from 'src/constants';
 import { GoalEntity } from 'src/entities/goal.entity';
+import { GoalDomainService } from 'src/domain/goal/service/goal.domain-service';
 
 @Module({
   imports: [TypeOrmModule.forFeature([GoalEntity])],
   controllers: [GoalController],
   providers: [
     GoalService,
+    GoalDomainService,
     {
       provide: IGOAL_REPOSITORY_TOKEN,
       useClass: GoalRepository,

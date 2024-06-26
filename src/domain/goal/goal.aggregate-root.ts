@@ -1,4 +1,5 @@
 import { GoalName } from './goal-name.value-object';
+import { GoalStartDate } from './start-date.value-object';
 
 export class Goal {
   constructor(
@@ -7,14 +8,14 @@ export class Goal {
     private name: GoalName,
     private description: string,
     private frequency: number,
-    private startDate: string,
+    private startDate: GoalStartDate,
   ) {}
 
   static create(
     userId: number,
     name: GoalName,
     description: string,
-    startDate: string,
+    startDate: GoalStartDate,
     frequency: number,
   ): Goal {
     return new Goal(null, userId, name, description, frequency, startDate);
@@ -40,7 +41,7 @@ export class Goal {
     return this.name;
   }
 
-  getStartDate(): string {
+  getStartDate(): GoalStartDate {
     return this.startDate;
   }
 }

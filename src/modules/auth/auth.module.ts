@@ -15,8 +15,8 @@ import { USER_REPOSITORY_TOKEN } from 'src/domain/repositories/user.repository';
     TypeOrmModule.forFeature([User]),
     PassportModule,
     JwtModule.register({
-      secret: 'your_jwt_secret_key',
-      signOptions: { expiresIn: '1h' },
+      secret: process.env.JWT_SEACRET,
+      signOptions: { expiresIn: '6h' },
     }),
     UserModule,
   ],
@@ -31,8 +31,4 @@ import { USER_REPOSITORY_TOKEN } from 'src/domain/repositories/user.repository';
   ],
   controllers: [AuthController],
 })
-export class AuthModule {
-  constructor() {
-    console.log('JWT_SECRET:', '3@6aZ!l$9KmP2sR8q#dXj*5%oT7vW'); // デバッグ用ログ
-  }
-}
+export class AuthModule {}
