@@ -9,9 +9,11 @@ import {
   DeleteDateColumn,
   OneToOne,
   JoinColumn,
+  OneToMany,
 } from 'typeorm';
 import { User } from './user.entity';
 import { Penalty } from './penalty.entity';
+import { Progress } from './progresses.entity';
 
 @Entity('goals')
 export class GoalEntity {
@@ -21,6 +23,9 @@ export class GoalEntity {
   @ManyToOne(() => User, (user) => user.id)
   @JoinColumn({ name: 'user_id' })
   user: User;
+
+  @OneToMany(() => Progress, (progress) => progress.goal)
+  progresses: Progress[];
 
   @OneToOne(() => Penalty, (penalty) => penalty.id)
   penalty: Penalty;

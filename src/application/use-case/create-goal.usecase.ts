@@ -15,7 +15,7 @@ export class GoalService {
     private readonly goalDomainService: GoalDomainService,
   ) {}
 
-  async createGoal(
+  async create(
     createGoalRequestDto: CreateGoalRequestDto,
     userId: number,
   ): Promise<number> {

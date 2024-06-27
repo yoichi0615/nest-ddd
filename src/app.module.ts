@@ -8,6 +8,7 @@ import { User } from './entities/user.entity';
 import { GoalEntity } from './entities/goal.entity';
 import { Penalty } from './entities/penalty.entity';
 import { Payment } from './entities/payment.entity';
+import { Progress } from './entities/progresses.entity';
 
 @Module({
   imports: [
@@ -21,7 +22,7 @@ import { Payment } from './entities/payment.entity';
       username: process.env.DATABASE_USER,
       password: process.env.DATABASE_PASSWORD,
       database: process.env.DATABASE_NAME,
-      entities: [User, GoalEntity, Penalty, Payment],
+      entities: [User, GoalEntity, Penalty, Payment, Progress],
       synchronize: true,
     }),
     UserModule,

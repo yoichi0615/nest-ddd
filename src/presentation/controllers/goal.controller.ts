@@ -9,11 +9,22 @@ import {
   ApiTags,
 } from '@nestjs/swagger';
 import { CreateGoalRequestDto } from '../dtos/create-goal-request.dto';
+import Stripe from 'stripe';
 
 @ApiTags('goals')
 @Controller('goals')
 export class GoalController {
-  constructor(private readonly goalService: GoalService) {}
+  constructor(
+    private readonly goalService: GoalService,
+    private stripe: Stripe,
+  ) {
+    this.stripe = new Stripe(
+      this.configService.get<string>('STRIPE_SECRET_KEY'),
+      {
+        apiVersion: '2020-08-27',
+      },
+    );
+  }
 
   @UseGuards(JwtAuthGuard)
   @Post()
@@ -27,6 +38,6 @@ export class GoalController {
     @Request() req,
   ) {
     const userId = req.user.userId;
-    return this.goalService.createGoal(createGoalRequestDto, userId);
+    return this.goalService.create(createGoalRequestDto, userId);
   }
 }
