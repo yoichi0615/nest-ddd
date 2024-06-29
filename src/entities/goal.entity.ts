@@ -7,12 +7,10 @@ import {
   CreateDateColumn,
   UpdateDateColumn,
   DeleteDateColumn,
-  OneToOne,
   JoinColumn,
   OneToMany,
 } from 'typeorm';
 import { User } from './user.entity';
-import { Penalty } from './penalty.entity';
 import { Progress } from './progresses.entity';
 
 @Entity('goals')
@@ -20,18 +18,24 @@ export class GoalEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @ManyToOne(() => User, (user) => user.id)
+  @ManyToOne(() => User, (user) => user.id, { nullable: false })
   @JoinColumn({ name: 'user_id' })
   user: User;
 
   @OneToMany(() => Progress, (progress) => progress.goal)
   progresses: Progress[];
 
-  @OneToOne(() => Penalty, (penalty) => penalty.id)
-  penalty: Penalty;
-
   @Column()
   name: string;
+
+  @Column({ name: 'penalty_date', nullable: true })
+  penaltyDate: Date;
+
+  @Column('decimal', { precision: 10, scale: 2, name: 'penalty_amount' })
+  penaltyAmount: number;
+
+  @Column({ name: 'is_achieved', nullable: true })
+  isAchieved: boolean;
 
   @Column('text')
   description: string;

@@ -6,12 +6,14 @@ import { GoalRepository } from 'src/infrastructure/repositories/goal.repository.
 import { IGOAL_REPOSITORY_TOKEN } from 'src/constants';
 import { GoalEntity } from 'src/entities/goal.entity';
 import { GoalDomainService } from 'src/domain/goal/service/goal.domain-service';
+import Stripe from 'stripe';
 
 @Module({
   imports: [TypeOrmModule.forFeature([GoalEntity])],
   controllers: [GoalController],
   providers: [
     GoalService,
+    Stripe,
     GoalDomainService,
     {
       provide: IGOAL_REPOSITORY_TOKEN,

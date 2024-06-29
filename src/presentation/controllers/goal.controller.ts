@@ -17,14 +17,7 @@ export class GoalController {
   constructor(
     private readonly goalService: GoalService,
     private stripe: Stripe,
-  ) {
-    this.stripe = new Stripe(
-      this.configService.get<string>('STRIPE_SECRET_KEY'),
-      {
-        apiVersion: '2020-08-27',
-      },
-    );
-  }
+  ) {}
 
   @UseGuards(JwtAuthGuard)
   @Post()

@@ -8,7 +8,6 @@ import {
   DeleteDateColumn,
   OneToMany,
 } from 'typeorm';
-import { Penalty } from './penalty.entity';
 import { GoalEntity } from './goal.entity';
 
 @Entity('users')
@@ -24,9 +23,6 @@ export class User {
 
   @Column()
   password: string;
-
-  @OneToMany(() => Penalty, (penalty) => penalty.user)
-  penalties: Penalty[];
 
   @OneToMany(() => GoalEntity, (goal) => goal.user)
   goals: GoalEntity[];
