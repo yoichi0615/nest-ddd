@@ -1,7 +1,7 @@
 ## Outline
 
-This repository is a sample project designed to learn the basics of NestJS and Domain-Driven Design (DDD). 
-Through this project, I will practice the principles of DDD while learning how to use NestJS.
+This repository is a sample project designed to learn the basics of NestJS and DDD.
+Based on onion architecture.
 
 ## Architecture overview
 ### Layers
@@ -12,6 +12,8 @@ Through this project, I will practice the principles of DDD while learning how t
 
 ### CQRS
 ![cqrs.svg](./cqrs.svg)
+
+## Technology Stack
 
 ## Running the app
 
