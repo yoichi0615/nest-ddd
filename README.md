@@ -4,15 +4,13 @@ This repository is a sample project designed to learn the basics of NestJS and D
 Through this project, I will practice the principles of DDD while learning how to use NestJS.
 
 ## Architecture overview
-### Onion Architecture
-├── src
-│ ├── application # Use cases and application services
-│ ├── domain # Domain models and repository interfaces
-│ ├── infrastructure # Database entities and repository implementations
-│ ├── interfaces # Controllers and DTOs (Data Transfer Objects)
-│ └── main.ts # Application entry point
+### Layers
+- **Presentation**
+- **Application**
+- **Infrastructure**
+- **Domain**
 
-
+### CQRS
 
 
 ## Running the app
