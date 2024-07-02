@@ -14,6 +14,8 @@ Based on onion architecture.
 ![cqrs.svg](./cqrs.svg)
 
 ## Technology Stack
+- NestJS
+- TypeORM
 
 ## Running the app
 
