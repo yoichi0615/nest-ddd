@@ -17,6 +17,9 @@ Based on onion architecture.
 - NestJS
 - TypeORM
 
+## Swagger
+http://localhost:3000/api
+
 ## Running the app
 
 ```bash
