@@ -11,7 +11,7 @@ Through this project, I will practice the principles of DDD while learning how t
 - **Domain**
 
 ### CQRS
-
+![](./cqrs.svg)
 
 ## Running the app
 
