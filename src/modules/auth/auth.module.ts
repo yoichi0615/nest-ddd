@@ -15,7 +15,7 @@ import { USER_REPOSITORY_TOKEN } from 'src/domain/repositories/user.repository';
     TypeOrmModule.forFeature([User]),
     PassportModule,
     JwtModule.register({
-      secret: process.env.JWT_SEACRET,
+      secret: 'your_jwt_secret_key',
       signOptions: { expiresIn: '6h' },
     }),
     UserModule,

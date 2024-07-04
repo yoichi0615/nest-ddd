@@ -8,7 +8,7 @@ import { IGoalRepository } from 'src/domain/repositories/goal.repository';
 import { CreateGoalRequestDto } from 'src/presentation/dtos/create-goal-request.dto';
 
 @Injectable()
-export class GoalService {
+export class CreateGoalService {
   constructor(
     @Inject(IGOAL_REPOSITORY_TOKEN)
     private readonly goalRepository: IGoalRepository,

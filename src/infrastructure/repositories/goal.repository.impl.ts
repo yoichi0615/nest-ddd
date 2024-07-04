@@ -5,6 +5,8 @@ import { GoalEntity } from 'src/entities/goal.entity';
 import { IGoalRepository } from 'src/domain/repositories/goal.repository';
 import { Goal } from 'src/domain/goal/goal.aggregate-root';
 import { GoalName } from 'src/domain/goal/goal-name.value-object';
+import { User } from 'src/entities/user.entity';
+import { GoalStartDate } from 'src/domain/goal/start-date.value-object';
 
 @Injectable()
 export class GoalRepository implements IGoalRepository {
@@ -25,7 +27,42 @@ export class GoalRepository implements IGoalRepository {
     return goalEntity.id;
   }
 
-  async findByName(name: GoalName): Promise<GoalEntity | null> {
-    return this.goalEntityRepository.findOne({ where: { name: name.value } });
+  async findByName(name: GoalName): Promise<Goal | null> {
+    const goal = await this.goalEntityRepository.findOne({
+      where: { name: name.value },
+    });
+
+    return goal
+      ? new Goal(
+          goal.id,
+          goal.userId,
+          new GoalName(goal.name),
+          goal.description,
+          goal.frequency,
+          new GoalStartDate(String(goal.startDate)),
+        )
+      : null;
+  }
+
+  async findByUser(user: User): Promise<Goal[] | null> {
+    const goalEntities = await this.goalEntityRepository.find({
+      where: { userId: user.id },
+    });
+
+    if (goalEntities.length === 0) {
+      return null;
+    }
+
+    return goalEntities.map(
+      (goalEntity) =>
+        new Goal(
+          goalEntity.id,
+          goalEntity.userId,
+          new GoalName(goalEntity.name),
+          goalEntity.description,
+          goalEntity.frequency,
+          new GoalStartDate(String(goalEntity.startDate)),
+        ),
+    );
   }
 }

@@ -22,6 +22,8 @@ export class GoalEntity {
   @JoinColumn({ name: 'user_id' })
   user: User;
 
+  userId: number;
+
   @OneToMany(() => Progress, (progress) => progress.goal)
   progresses: Progress[];
 
