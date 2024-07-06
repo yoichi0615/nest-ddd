@@ -6,7 +6,7 @@ import {
   Request,
   UseGuards,
 } from '@nestjs/common';
-import { CreateGoalService } from 'src/application/use-case/create-goal.usecase';
+import { CreateGoalService } from 'src/application/use-case/goal/create-goal.usecase';
 import { JwtAuthGuard } from '../guards/jwt-auth.guard';
 import {
   ApiBearerAuth,
@@ -17,14 +17,14 @@ import {
 } from '@nestjs/swagger';
 import { CreateGoalRequestDto } from '../dtos/create-goal-request.dto';
 import Stripe from 'stripe';
-import { GetGoalService } from 'src/application/use-case/get-goal.usecase';
+import { FetchGoalService } from 'src/application/use-case/goal/fetch-goal.usecase';
 
 @ApiTags('goals')
 @Controller('goals')
 export class GoalController {
   constructor(
     private readonly createGoalService: CreateGoalService,
-    private readonly getGoalService: GetGoalService,
+    private readonly fetchGoalService: FetchGoalService,
     private stripe: Stripe,
   ) {}
 
@@ -51,6 +51,6 @@ export class GoalController {
   @ApiBearerAuth()
   async getGoalListByUser(@Request() req) {
     const user = req.user;
-    return this.getGoalService.getGoalListByUser(user);
+    return this.fetchGoalService.getGoalListByUser(user);
   }
 }

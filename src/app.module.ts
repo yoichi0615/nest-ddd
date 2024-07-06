@@ -7,7 +7,7 @@ import { GoalModule } from './modules/goal/goal.module';
 import { User } from './entities/user.entity';
 import { GoalEntity } from './entities/goal.entity';
 import { Payment } from './entities/payment.entity';
-import { Progress } from './entities/progresses.entity';
+import { Progress } from './entities/progress.entity';
 
 @Module({
   imports: [

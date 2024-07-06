@@ -5,7 +5,7 @@ import { User } from 'src/entities/user.entity';
 import { FetchGoalDto } from './fetch-goal.dto';
 
 @Injectable()
-export class GetGoalService {
+export class FetchGoalService {
   constructor(
     @Inject(IGOAL_REPOSITORY_TOKEN)
     private readonly goalRepository: IGoalRepository,

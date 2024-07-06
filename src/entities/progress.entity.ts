@@ -25,7 +25,7 @@ export class Progress {
   @Column({ name: 'image' })
   image: string;
 
-  @Column('date', { name: 'start_date' })
+  @Column('date', { name: 'date' })
   date: Date;
 
   @CreateDateColumn({ name: 'created_at', type: 'timestamp' })

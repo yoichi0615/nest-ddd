@@ -11,7 +11,7 @@ import {
   OneToMany,
 } from 'typeorm';
 import { User } from './user.entity';
-import { Progress } from './progresses.entity';
+import { Progress } from './progress.entity';
 
 @Entity('goals')
 export class GoalEntity {

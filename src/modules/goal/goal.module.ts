@@ -1,8 +1,8 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { GoalController } from 'src/presentation/controllers/goal.controller';
-import { CreateGoalService } from 'src/application/use-case/create-goal.usecase';
-import { GetGoalService } from 'src/application/use-case/get-goal.usecase';
+import { CreateGoalService } from 'src/application/use-case/goal/create-goal.usecase';
+import { FetchGoalService } from 'src/application/use-case/goal/fetch-goal.usecase';
 import { GoalRepository } from 'src/infrastructure/repositories/goal.repository.impl';
 import { IGOAL_REPOSITORY_TOKEN } from 'src/constants';
 import { GoalEntity } from 'src/entities/goal.entity';
@@ -14,7 +14,7 @@ import Stripe from 'stripe';
   controllers: [GoalController],
   providers: [
     CreateGoalService,
-    GetGoalService,
+    FetchGoalService,
     Stripe,
     GoalDomainService,
     {
