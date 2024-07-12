@@ -8,6 +8,7 @@ import { User } from './entities/user.entity';
 import { GoalEntity } from './entities/goal.entity';
 import { Payment } from './entities/payment.entity';
 import { Progress } from './entities/progress.entity';
+import { ScheduleModule } from '@nestjs/schedule';
 
 @Module({
   imports: [
@@ -27,6 +28,7 @@ import { Progress } from './entities/progress.entity';
     UserModule,
     AuthModule,
     GoalModule,
+    ScheduleModule.forRoot(),
   ],
   controllers: [],
   providers: [],

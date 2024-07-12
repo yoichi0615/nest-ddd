@@ -6,7 +6,7 @@ import { FetchGoalService } from 'src/application/use-case/goal/fetch-goal.useca
 import { GoalRepository } from 'src/infrastructure/repositories/goal.repository.impl';
 import { IGOAL_REPOSITORY_TOKEN } from 'src/constants';
 import { GoalEntity } from 'src/entities/goal.entity';
-import { GoalDomainService } from 'src/domain/goal/service/goal.domain-service';
+import { GoalDomainService } from 'src/domain/goal/service/goal.service';
 import Stripe from 'stripe';
 
 @Module({
