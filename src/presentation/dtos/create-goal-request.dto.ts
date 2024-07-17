@@ -1,5 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsString, IsNotEmpty, IsDateString } from 'class-validator';
+import { IsString, IsNotEmpty, IsDateString, IsBoolean } from 'class-validator';
 
 export class CreateGoalRequestDto {
   @ApiProperty({ example: 'Learn NestJS', description: 'The name of the goal' })
@@ -26,4 +26,7 @@ export class CreateGoalRequestDto {
   })
   @IsDateString()
   readonly startDate: string;
+
+  @IsBoolean()
+  readonly isAchieved: boolean;
 }

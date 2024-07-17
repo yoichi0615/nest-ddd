@@ -32,8 +32,9 @@ export class CreateGoalService {
       createGoalRequestDto.description,
       startDate,
       createGoalRequestDto.frequency,
+      createGoalRequestDto.isAchieved,
     );
 
-    return await this.goalRepository.create(goal);
+    return await this.goalRepository.save(goal);
   }
 }

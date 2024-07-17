@@ -9,6 +9,7 @@ export class Goal {
     private description: string,
     private frequency: number,
     private startDate: GoalStartDate,
+    private isAchieved: boolean,
   ) {}
 
   static create(
@@ -17,8 +18,17 @@ export class Goal {
     description: string,
     startDate: GoalStartDate,
     frequency: number,
+    isAchieved: boolean,
   ): Goal {
-    return new Goal(null, userId, name, description, frequency, startDate);
+    return new Goal(
+      null,
+      userId,
+      name,
+      description,
+      frequency,
+      startDate,
+      isAchieved,
+    );
   }
 
   getId(): number {
@@ -43,5 +53,13 @@ export class Goal {
 
   getStartDate(): GoalStartDate {
     return this.startDate;
+  }
+
+  getIsAchieved(): boolean {
+    return this.isAchieved;
+  }
+
+  markAsNotAchieved() {
+    return (this.isAchieved = false);
   }
 }

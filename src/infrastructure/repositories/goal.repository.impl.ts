@@ -15,7 +15,7 @@ export class GoalRepository implements IGoalRepository {
     private readonly goalEntityRepository: Repository<GoalEntity>,
   ) {}
 
-  async create(goal: Goal): Promise<number> {
+  async save(goal: Goal): Promise<number> {
     const goalEntity = await this.goalEntityRepository.save({
       userId: goal.getUserId(),
       name: goal.getName().value,
@@ -40,9 +40,12 @@ export class GoalRepository implements IGoalRepository {
           goal.description,
           goal.frequency,
           new GoalStartDate(String(goal.startDate)),
+          goal.isAchieved,
         )
       : null;
   }
+
+  async findById(id: number): Promise<any> {}
 
   async findByUser(user: User): Promise<Goal[] | null> {
     const goalEntities = await this.goalEntityRepository.find({
@@ -62,6 +65,7 @@ export class GoalRepository implements IGoalRepository {
           goalEntity.description,
           goalEntity.frequency,
           new GoalStartDate(String(goalEntity.startDate)),
+          goalEntity.isAchieved,
         ),
     );
   }

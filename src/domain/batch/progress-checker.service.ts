@@ -9,12 +9,12 @@ export class ProgressCheckerService {
   ) {}
   async checkAndApplyPenalty(goalId: number): Promise<void> {
     const isProgressing = this.checkProgress(progresses);
-
     if (!isProgressing) {
-      await this.paymentService.processPenalty(goalId);
-      const goal = await this.goalRepository.findById(goalId);
-      goal.markAsNotAchieved();
-      await this.goalRepository.save(goal);
+    // TODO: Process payment
+    // await this.paymentService.processPenalty(goalId);
+    // const goal = await this.goalRepository.findById(goalId);
+    // goal.markAsNotAchieved();
+    // await this.goalRepository.save(goal);
     }
   }
 }
