@@ -20,8 +20,8 @@ Based on onion architecture.
 ## Swagger
 http://localhost:3000/api
 
-## ER図
-![ER図](./er.draw.png)
+## ER
+![ER](./er.draw.png)
 
 ## Running the app
 
