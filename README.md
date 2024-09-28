@@ -20,6 +20,9 @@ Based on onion architecture.
 ## Swagger
 http://localhost:3000/api
 
+## ER
+![ER](./er.draw.png)
+
 ## Running the app
 
 ```bash
