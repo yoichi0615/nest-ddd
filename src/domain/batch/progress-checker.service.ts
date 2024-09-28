@@ -8,13 +8,13 @@ export class ProgressCheckerService {
     private readonly goalRepository: IGoalRepository,
   ) {}
   async checkAndApplyPenalty(goalId: number): Promise<void> {
-    const isProgressing = this.checkProgress(progresses);
-    if (!isProgressing) {
+    // const isProgressing = this.checkProgress(progresses);
+    // if (!isProgressing) {
     // TODO: Process payment
     // await this.paymentService.processPenalty(goalId);
     // const goal = await this.goalRepository.findById(goalId);
     // goal.markAsNotAchieved();
     // await this.goalRepository.save(goal);
-    }
+    // }
   }
 }

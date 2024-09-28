@@ -21,9 +21,11 @@ export class CreateGoalService {
   ): Promise<number> {
     const name = new GoalName(createGoalRequestDto.name);
     const startDate = new GoalStartDate(createGoalRequestDto.startDate);
-    const isExist = this.goalDomainService.isExist(name);
+    const isExist = await this.goalDomainService.isExist(name);
     if (isExist) {
-      throw new BadRequestException(`Goal name "${name}" is already used`);
+      throw new BadRequestException(
+        `Goal name "${name.value}" is already used`,
+      );
     }
 
     const goal = Goal.create(
