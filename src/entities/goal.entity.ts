@@ -18,11 +18,12 @@ export class GoalEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @ManyToOne(() => User, (user) => user.id, { nullable: false })
+  @Column({ name: 'user_id' })
+  userId: number;
+
+  @ManyToOne(() => User, (user) => user.goals, { nullable: false })
   @JoinColumn({ name: 'user_id' })
   user: User;
-
-  userId: number;
 
   @OneToMany(() => Progress, (progress) => progress.goal)
   progresses: Progress[];
@@ -33,7 +34,12 @@ export class GoalEntity {
   @Column({ name: 'penalty_date', nullable: true })
   penaltyDate: Date;
 
-  @Column('decimal', { precision: 10, scale: 2, name: 'penalty_amount' })
+  @Column('decimal', {
+    precision: 10,
+    scale: 2,
+    name: 'penalty_amount',
+    nullable: true,
+  })
   penaltyAmount: number;
 
   @Column({ name: 'is_achieved', nullable: true })

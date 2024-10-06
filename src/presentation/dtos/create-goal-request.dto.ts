@@ -15,7 +15,7 @@ export class CreateGoalRequestDto {
   @IsNotEmpty()
   readonly description: string;
 
-  @ApiProperty({ example: 'Daily', description: 'The frequency of the goal' })
+  @ApiProperty({ example: 1, description: 'The frequency of the goal' })
   @IsString()
   @IsNotEmpty()
   readonly frequency: number;

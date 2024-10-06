@@ -16,6 +16,7 @@ export class GoalRepository implements IGoalRepository {
   ) {}
 
   async save(goal: Goal): Promise<number> {
+    console.log(goal.getUserId(), 'GOALGETUSERID');
     const goalEntity = await this.goalEntityRepository.save({
       userId: goal.getUserId(),
       name: goal.getName().value,
@@ -24,6 +25,7 @@ export class GoalRepository implements IGoalRepository {
       frequency: goal.getFrequency(),
     });
 
+    console.log(goal.getUserId(), 'GOALGETUSERID222');
     return goalEntity.id;
   }
 
@@ -45,11 +47,29 @@ export class GoalRepository implements IGoalRepository {
       : null;
   }
 
-  async findById(id: number): Promise<any> {}
+  async findById(id: number) {
+    const goalEntity = await this.goalEntityRepository.findOne({
+      where: { id },
+    });
+
+    if (!goalEntity) {
+      throw new Error('Dont exist goal');
+    }
+
+    return new Goal(
+      goalEntity.id,
+      goalEntity.userId,
+      new GoalName(goalEntity.name),
+      goalEntity.description,
+      goalEntity.frequency,
+      new GoalStartDate(String(goalEntity.startDate)),
+      goalEntity.isAchieved,
+    );
+  }
 
   async findByUser(user: User): Promise<Goal[] | null> {
     const goalEntities = await this.goalEntityRepository.find({
-      where: { userId: user.id },
+      where: { user: { id: user.id } },
     });
 
     if (goalEntities.length === 0) {

@@ -2,6 +2,7 @@ import {
   Body,
   Controller,
   Get,
+  Param,
   Post,
   Request,
   UseGuards,
@@ -52,5 +53,16 @@ export class GoalController {
   async getGoalListByUser(@Request() req) {
     const user = req.user;
     return this.fetchGoalService.getGoalListByUser(user);
+  }
+
+  @UseGuards(JwtAuthGuard)
+  @Get(':goalId')
+  @ApiOperation({ summary: 'Get goal detail by id' })
+  @ApiResponse({ status: 200, description: 'Get goal detail' })
+  @ApiResponse({ status: 401, description: 'Unauthorized' })
+  @ApiBearerAuth()
+  async getGoalDetail(@Param('goalId') goalId: number, @Request() req) {
+    const userId = req.user.userId;
+    return this.fetchGoalService.getGoalDetail(goalId, userId);
   }
 }

@@ -1,32 +1,28 @@
 import {
-  Entity,
   Column,
-  PrimaryGeneratedColumn,
   CreateDateColumn,
   DeleteDateColumn,
-  UpdateDateColumn,
+  Entity,
   OneToOne,
-  JoinColumn,
+  PrimaryGeneratedColumn,
+  UpdateDateColumn,
 } from 'typeorm';
-import { Penalty } from './penalty.entity';
+import { Payment } from './payment.entity';
 
-@Entity('payments')
-export class Payment {
+// Penalty entity
+@Entity('penalties')
+export class Penalty {
   @PrimaryGeneratedColumn()
   id: number;
-
-  @Column({ name: 'stripe_payment_id' })
-  stripePaymentId: string;
-
-  @OneToOne(() => Penalty, (penalty) => penalty.payment)
-  @JoinColumn()
-  penalty: Penalty;
 
   @Column('decimal', { precision: 10, scale: 2 })
   amount: number;
 
   @Column('date')
-  date: Date;
+  penaltyDate: Date;
+
+  @OneToOne(() => Payment, (table) => table.penalty, { cascade: true })
+  payment: Payment;
 
   @CreateDateColumn({ name: 'created_at', type: 'timestamp' })
   createdAt: Date;
