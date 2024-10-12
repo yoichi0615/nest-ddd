@@ -11,7 +11,7 @@ import {
 import { GoalEntity } from './goal.entity';
 
 @Entity('progresses')
-export class Progress {
+export class ProgressEntity {
   @PrimaryGeneratedColumn()
   id: number;
 

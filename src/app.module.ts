@@ -7,7 +7,7 @@ import { GoalModule } from './modules/goal/goal.module';
 import { User } from './entities/user.entity';
 import { GoalEntity } from './entities/goal.entity';
 import { Payment } from './entities/payment.entity';
-import { Progress } from './entities/progress.entity';
+import { ProgressEntity } from './entities/progress.entity';
 import { ScheduleModule } from '@nestjs/schedule';
 import { Penalty } from './entities/penalty.entity';
 
@@ -23,7 +23,7 @@ import { Penalty } from './entities/penalty.entity';
       username: process.env.DATABASE_USER,
       password: process.env.DATABASE_PASSWORD,
       database: process.env.DATABASE_NAME,
-      entities: [User, GoalEntity, Payment, Progress, Penalty],
+      entities: [User, GoalEntity, Payment, ProgressEntity, Penalty],
       synchronize: true,
     }),
     UserModule,
