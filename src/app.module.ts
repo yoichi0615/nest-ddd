@@ -10,6 +10,7 @@ import { Payment } from './entities/payment.entity';
 import { ProgressEntity } from './entities/progress.entity';
 import { ScheduleModule } from '@nestjs/schedule';
 import { Penalty } from './entities/penalty.entity';
+import { ProgressModule } from './modules/progress/progress.module';
 
 @Module({
   imports: [
@@ -29,6 +30,7 @@ import { Penalty } from './entities/penalty.entity';
     UserModule,
     AuthModule,
     GoalModule,
+    ProgressModule,
     ScheduleModule.forRoot(),
   ],
   controllers: [],

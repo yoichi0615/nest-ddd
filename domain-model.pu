@@ -1,0 +1,81 @@
+@startuml
+
+package "User Aggregate" {
+  class "User" {
+    + userId : number
+    + name : string
+    + email : string
+  }
+
+  class "Reward" {
+    + rewardId : number
+    + rewardDate : date
+  }
+
+  class "Payment" {
+    + paymentId : number
+    + amount : decimal
+    + paymentDate : date
+    + isPaid : boolean
+  }
+
+  User --> Reward : "0..* receives"
+  User --> Payment : "0..* makes"
+}
+
+package "Goal Aggregate" {
+  class "Goal" {
+    + goalId : number
+    + name : string
+    + description : string
+    + startDate : date
+    + frequency : number
+    + isCompleted : boolean
+  }
+
+  class "Penalty" {
+    + penaltyId : number
+    + amount : decimal
+    + penaltyDate : date
+    + isPaid : boolean
+  }
+
+  class "RewardCondition" {
+    + conditionId : number
+    + conditionDetails : string
+  }
+
+  Goal --> Penalty : "1 may have 0..1"
+  Goal --> RewardCondition : "1 may have 0..1"
+}
+
+package "Progress Aggreate" {
+  class "Progress" {
+    + progressId : number
+    + goalId : number
+    + date : date
+    + comment : string
+  }
+
+  Progress --> Goal : "n relates to 1"
+}
+
+package "Penalty & Payment Context" {
+  class "Payment" {
+    + paymentId : number
+    + amount : decimal
+    + paymentDate : date
+    + isPaid : boolean
+  }
+
+  class "Penalty" {
+    + penaltyId : number
+    + amount : decimal
+    + penaltyDate : date
+    + isPaid : boolean
+  }
+
+  Penalty --> Payment : "1 triggers 1"
+}
+
+@enduml

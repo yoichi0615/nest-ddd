@@ -28,6 +28,8 @@ export class Payment {
   @Column('date')
   date: Date;
 
+  // TODO: paymentのステータスを追加する
+
   @CreateDateColumn({ name: 'created_at', type: 'timestamp' })
   createdAt: Date;
 

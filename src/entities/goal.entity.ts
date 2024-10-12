@@ -11,7 +11,7 @@ import {
   OneToMany,
 } from 'typeorm';
 import { User } from './user.entity';
-import { Progress } from './progress.entity';
+import { ProgressEntity } from './progress.entity';
 
 @Entity('goals')
 export class GoalEntity {
@@ -25,8 +25,8 @@ export class GoalEntity {
   @JoinColumn({ name: 'user_id' })
   user: User;
 
-  @OneToMany(() => Progress, (progress) => progress.goal)
-  progresses: Progress[];
+  @OneToMany(() => ProgressEntity, (progress) => progress.goal)
+  progresses: ProgressEntity[];
 
   @Column()
   name: string;
