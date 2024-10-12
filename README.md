@@ -1,6 +1,6 @@
 ## Outline
 
-This repository is a sample project designed to learn the basics of NestJS and DDD.
+This repository is a project designed to learn the basics of NestJS and DDD.
 Based on onion architecture.
 
 ## Architecture overview
