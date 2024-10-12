@@ -10,6 +10,10 @@ Based on onion architecture.
 - **Infrastructure**
 - **Domain**
 
+## UML Diagram
+![UML Diagram](./domain-model.png)
+
+
 ### CQRS
 ![cqrs.svg](./cqrs.svg)
 
