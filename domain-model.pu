@@ -1,6 +1,7 @@
 @startuml
+' ドメインモデル図: ゴールにペナルティと支払いを含めた構造を表現
 
-package "User Aggregate" {
+package "User Context" {
   class "User" {
     + userId : number
     + name : string
@@ -12,18 +13,10 @@ package "User Aggregate" {
     + rewardDate : date
   }
 
-  class "Payment" {
-    + paymentId : number
-    + amount : decimal
-    + paymentDate : date
-    + isPaid : boolean
-  }
-
   User --> Reward : "0..* receives"
-  User --> Payment : "0..* makes"
 }
 
-package "Goal Aggregate" {
+package "Goal Context" {
   class "Goal" {
     + goalId : number
     + name : string
@@ -40,16 +33,24 @@ package "Goal Aggregate" {
     + isPaid : boolean
   }
 
+  class "Payment" {
+    + paymentId : number
+    + amount : decimal
+    + paymentDate : date
+    + isPaid : boolean
+  }
+
   class "RewardCondition" {
     + conditionId : number
     + conditionDetails : string
   }
 
-  Goal --> Penalty : "1 may have 0..1"
+  Goal --> Penalty : "1 may have 0..*"
+  Penalty --> Payment : "1 triggers 1"
   Goal --> RewardCondition : "1 may have 0..1"
 }
 
-package "Progress Aggreate" {
+package "Progress Context" {
   class "Progress" {
     + progressId : number
     + goalId : number
@@ -58,24 +59,6 @@ package "Progress Aggreate" {
   }
 
   Progress --> Goal : "n relates to 1"
-}
-
-package "Penalty & Payment Context" {
-  class "Payment" {
-    + paymentId : number
-    + amount : decimal
-    + paymentDate : date
-    + isPaid : boolean
-  }
-
-  class "Penalty" {
-    + penaltyId : number
-    + amount : decimal
-    + penaltyDate : date
-    + isPaid : boolean
-  }
-
-  Penalty --> Payment : "1 triggers 1"
 }
 
 @enduml
