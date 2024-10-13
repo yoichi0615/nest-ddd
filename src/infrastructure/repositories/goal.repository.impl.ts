@@ -16,7 +16,6 @@ export class GoalRepository implements IGoalRepository {
   ) {}
 
   async save(goal: Goal): Promise<number> {
-    console.log(goal.getUserId(), 'GOALGETUSERID');
     const goalEntity = await this.goalEntityRepository.save({
       userId: goal.getUserId(),
       name: goal.getName().value,
@@ -25,7 +24,6 @@ export class GoalRepository implements IGoalRepository {
       frequency: goal.getFrequency(),
     });
 
-    console.log(goal.getUserId(), 'GOALGETUSERID222');
     return goalEntity.id;
   }
 
@@ -36,7 +34,6 @@ export class GoalRepository implements IGoalRepository {
 
     return goal
       ? new Goal(
-          goal.id,
           goal.userId,
           new GoalName(goal.name),
           goal.description,
@@ -57,7 +54,6 @@ export class GoalRepository implements IGoalRepository {
     }
 
     return new Goal(
-      goalEntity.id,
       goalEntity.userId,
       new GoalName(goalEntity.name),
       goalEntity.description,
@@ -79,7 +75,6 @@ export class GoalRepository implements IGoalRepository {
     return goalEntities.map(
       (goalEntity) =>
         new Goal(
-          goalEntity.id,
           goalEntity.userId,
           new GoalName(goalEntity.name),
           goalEntity.description,

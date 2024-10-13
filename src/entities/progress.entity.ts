@@ -15,7 +15,10 @@ export class ProgressEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @ManyToOne(() => GoalEntity, (goal) => goal.progresses)
+  @Column({ name: 'goal_id' })
+  goalId: number;
+
+  @ManyToOne(() => GoalEntity, (goal) => goal.progresses, { nullable: false })
   @JoinColumn({ name: 'goal_id' })
   goal: GoalEntity;
 

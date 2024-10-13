@@ -19,7 +19,7 @@ export class FetchGoalService {
     return goals.map(
       (goal) =>
         new FetchGoalDto(
-          goal.id,
+          goal.getId(),
           goal.getName().value,
           goal.getDescription(),
           String(goal.getStartDate().value),
@@ -36,7 +36,7 @@ export class FetchGoalService {
     this.goalDomainService.checkIfUserOwnsGoal(goal, userId);
 
     return new FetchGoalDto(
-      goal.id,
+      goal.getId(),
       goal.getName().value,
       goal.getDescription(),
       String(goal.getStartDate().value),

@@ -35,6 +35,7 @@ export class ProgressController {
   ) {
     const userId = req.user.userId;
     const result = this.createProgressService.execute(
+      goalId,
       userId,
       createProgressDto,
     );

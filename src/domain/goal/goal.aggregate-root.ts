@@ -1,16 +1,32 @@
+import { AggregateRoot } from '@nestjs/cqrs';
 import { GoalName } from './goal-name.value-object';
 import { GoalStartDate } from './start-date.value-object';
 
-export class Goal {
+export class Goal extends AggregateRoot {
+  private readonly id?: number;
+  readonly userId: number;
+  private name: GoalName;
+  private description: string;
+  private frequency: number;
+  private startDate: GoalStartDate;
+  private isAchieved: boolean = false;
+
   constructor(
-    readonly id: number,
-    readonly userId: number,
-    private name: GoalName,
-    private description: string,
-    private frequency: number,
-    private startDate: GoalStartDate,
-    private isAchieved: boolean,
-  ) {}
+    userId: number,
+    name: GoalName,
+    description: string,
+    frequency: number,
+    startDate: GoalStartDate,
+    isAchieved: boolean,
+  ) {
+    super();
+    this.userId = userId;
+    this.name = name;
+    this.description = description;
+    this.frequency = frequency;
+    this.startDate = startDate;
+    this.isAchieved = isAchieved;
+  }
 
   static create(
     userId: number,
@@ -21,7 +37,6 @@ export class Goal {
     isAchieved: boolean,
   ): Goal {
     return new Goal(
-      null,
       userId,
       name,
       description,
